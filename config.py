@@ -2,7 +2,7 @@ import os
 
 # -----------------------------SYSTEM----------------------------------
 LOG_PATH = ''
-PORT = 8008
+PORT = 8000
 LOG_SERVER = os.getenv('LOG_SERVER', '')
 CHROME_PATH = os.getenv('CHROME_PATH', None)  # chrome路径
 # ---------------------------------------------------------------------
