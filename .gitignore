@@ -1,0 +1,13 @@
+__pycache__/
+venv/
+.git/
+.idea/
+.vscode/
+
+local_config.py
+.env
+
+tmp/
+demo/
+log/
+logs/

@@ -1,0 +1,29 @@
+version: '3.9'
+
+name: ${NAME:-plugin}
+
+services:
+  app:
+    build: .
+    image: infq/plugin:latest
+    ports:
+      - "${EXPOSE_PORT:-8000}:8000"
+    environment:
+      - LOG_SERVER=${LOG_SERVER:-}
+      - WORKERS=${WORKERS:-4}
+      - MYSQL_HOST=${MYSQL_HOST:-127.0.0.1}
+      - MYSQL_PORT=${MYSQL_PORT:-3306}
+      - MYSQL_USER=${MYSQL_USER:-root}
+      - MYSQL_PWD=${MYSQL_PWD:-root}
+      - REDIS_HOST=${REDIS_HOST:-127.0.0.1}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_PWD=${REDIS_PWD:-root}
+    volumes:
+      - ${LOG:-./logs}:/plugin/logs
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8000/health || exit 1" ]
+      interval: 60s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
